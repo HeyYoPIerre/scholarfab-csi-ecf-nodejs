@@ -1,4 +1,4 @@
-import { hash } from 'bcrypt'
+import { hash } from 'bcrypt';
 
 export function fetchUserByEmail(db, email) {
     return new Promise((resolve, reject) => {
