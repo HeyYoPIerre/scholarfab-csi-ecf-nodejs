@@ -21,19 +21,18 @@ export function editNote(db, { id, title, context, owned_id }) {
     });
 }
 
-export function indexNotes(db, userId = null) {
-    return new Promise(async (resolve, reject) => {
-        let query = 'SELECT * FROM notes';
-        if (userId) {
-            query += ' WHERE owned_id =?';
-        }
-        const stmt = db.prepare(query);
-        stmt.all(userId? [userId] : [], (err, rows) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(rows);
-            }
+export async function indexNotes(db) {
+    const sql = 'SELECT * FROM notes ORDER BY title ASC';
+    const rows = [];
+    const results = await db.all(sql);
+
+    results.forEach(row => {
+        rows.push({
+            title: row.title,
+            context: row.context,
+            owned_id: row.owned_id
         });
     });
+
+    return rows;
 }
