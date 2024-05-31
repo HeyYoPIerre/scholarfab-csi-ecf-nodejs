@@ -7,7 +7,7 @@ import {
   export function loadApplicationController(app) {
     const db = app.get("g:db");
   
-    app.get('/notes', async (req, res) => {
+    app.get('/note', async (req, res) => {
         try {
             const notes = await indexNotes(db);
             res.render('note', { notes: notes });

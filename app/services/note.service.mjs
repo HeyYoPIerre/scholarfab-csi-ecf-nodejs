@@ -30,7 +30,6 @@ export async function indexNotes(db) {
         rows.push({
             title: row.title,
             context: row.context,
-            owned_id: row.owned_id
         });
     });
 
