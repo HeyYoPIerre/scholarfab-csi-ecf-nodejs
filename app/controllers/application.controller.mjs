@@ -16,8 +16,9 @@ import {
             res.status(500).send('Erreur lors de la récupération des notes.');
         }
     });
+    //erreure 500 :'(
 
-    app.get("/note/add", (req, res) => res.render("noteForm"));
+    app.get("/note/add", (req, res) => res.render("noteForm")); // fonctionne, mais au moment de submit redirect vers /note qui est en erreure 500
     app.get("/note/edit/:id", (req, res) => editNote(req, res));
     app.all("/note", (req, res) => createNote(req, res));
   
